@@ -1,0 +1,23 @@
+SERVER irc.dishonline.com
+set display off
+nick stevewebb
+set NOVICE off
+set INPUT_ALIASES off
+set AUTO_WHOWAS on
+set SHOW_CHANNEL_NAMES on
+set SHOW_AWAY_ONCE on
+
+join #dol
+set display on
+
+#set novice off		# some example variable settings, read the online
+#set auto_unmark_away on	#   help for SET for descriptions, and others
+#
+#bind ^I switch_channels
+#bind ^V quote_character # and some key "bindings"; ^I is the "tab" key
+#
+#alias ? help		# some convenient aliases to save keystrokes
+#alias l leave *		# leave the current channel
+#alias m msg
+#alias , msg ,		# reply to the last person who sent you a message
+#alias . msg .		# send again to the last person you msg'd
