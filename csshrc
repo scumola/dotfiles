@@ -1,0 +1,4 @@
+clusters = sop-app prod-app
+
+sop-app = sop-app1 sop-app2 sop-app3 sop-app4 sop-app5 sop-app6 sop-app7 sop-app8 sop-app9 sop-app10
+prod-app = prod-appserv07 prod-appserv08 prod-appserv09 prod-appserv10 prod-appserv11 prod-appserv12 prod-appserv13 prod-appserv14 prod-appserv15 prod-appserv16 prod-appserv17 prod-appserv18
