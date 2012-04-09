@@ -1,4 +1,3 @@
-# System-wide .profile for sh(1)
 
 if [ -x /usr/libexec/path_helper ]; then
 	eval `/usr/libexec/path_helper -s`
@@ -20,6 +19,8 @@ shopt -s nocaseglob
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
+export HISTFILESIZE=10000
+export HISTSIZE=10000
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
@@ -90,3 +91,5 @@ alias pumpitup="osascript -e 'set volume 10'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 alias less="less -R $*"
+
+alias movies="cd /Users/stevenwebb/work_personal/google-movie-showtimes-parser ; ./movies.php | less -R"

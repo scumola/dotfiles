@@ -1,11 +1,22 @@
 SERVER irc.dishonline.com
 set display off
 nick stevewebb
-set NOVICE off
-set INPUT_ALIASES off
-set AUTO_WHOWAS on
-set SHOW_CHANNEL_NAMES on
-set SHOW_AWAY_ONCE on
+
+set auto_away off
+set auto_unmark_away on
+set auto_whowas on
+set beep off
+set beep_max 0
+set clock_24hour on
+set display on
+set history_file ~/.irchistory
+set input_aliases off
+set lastlog 1000
+set log on
+set novice off
+set show_always_once on
+set show_channel_names on
+set suppress_server_motd on
 
 join #dol
 set display on
