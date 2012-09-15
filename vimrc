@@ -3,6 +3,7 @@ set wildmenu
 set ttyfast
 
 call pathogen#infect()
+call pathogen#runtime_append_all_bundles()
 
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 	syntax on
