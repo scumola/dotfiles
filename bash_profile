@@ -37,6 +37,7 @@ export LANG="en_US"
 complete -W "NSGlobalDomain" defaults
 
 alias irc="xaric swebb irc.dishonline.com"
+alias twit="xaric scumola irc.twit.tv"
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 	alias ls="command ls -G"
@@ -93,3 +94,30 @@ alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 alias less="less -R $*"
 
 alias movies="cd /Users/stevenwebb/work_personal/google-movie-showtimes-parser ; ./movies.php | less -R"
+
+export SSH_AUTH_SOCK=~/.ssh-socket
+
+ssh-add -l >/dev/null 2>&1
+if [ $? = 2 ]; then
+   # No ssh-agent running
+   rm -rf $SSH_AUTH_SOCK
+   ssh-agent -a $SSH_AUTH_SOCK >/tmp/.ssh-script
+   source /tmp/.ssh-script
+   echo $SSH_AGENT_PID > ~/.ssh-agent-pid
+   rm /tmp/.ssh-script
+   ssh-add
+   ssh-add ~/keys/*.priv
+   ssh-add ~/.ssh/dol-pk.pem
+   ssh-add ~/.ssh/deploycopy
+   ssh-add ~/.ssh/dishgit.pem
+   ssh-add ~/.ssh/monitordishonlinecom.pem
+   ssh-add ~/.ssh/datalanche
+   ssh-add ~/Downloads/production-root.pem
+fi
+
+source .nagios_commands.bash
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export PIPE_GTALK_USER=bigwebb@gmail.com
+export PIPE_GTALK_PASS=Fish..Head

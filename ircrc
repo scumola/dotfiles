@@ -18,7 +18,9 @@ set show_always_once on
 set show_channel_names on
 set suppress_server_motd on
 
+join #puppet
 join #dol
+join #twitlive
 set display on
 
 #set novice off		# some example variable settings, read the online
@@ -32,3 +34,7 @@ set display on
 #alias m msg
 #alias , msg ,		# reply to the last person who sent you a message
 #alias . msg .		# send again to the last person you msg'd
+
+ignore #puppet JOINS PARTS QUITS
+ignore #twitlive JOINS PARTS QUITS
+ignore #twitlive2 JOINS PARTS QUITS

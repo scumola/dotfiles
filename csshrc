@@ -1,4 +1,17 @@
-clusters = sop-app prod-app
+clusters = sop-app prod-app old-prod-dj new-prod-dj new-sop-dj int-mongodb prod-mongodb temp-new-dj badcheese12 prod-secure prod-solr cdn-workers
 
 sop-app = sop-app1 sop-app2 sop-app3 sop-app4 sop-app5 sop-app6 sop-app7 sop-app8 sop-app9 sop-app10
 prod-app = prod-appserv07 prod-appserv08 prod-appserv09 prod-appserv10 prod-appserv11 prod-appserv12 prod-appserv13 prod-appserv14 prod-appserv15 prod-appserv16 prod-appserv17 prod-appserv18
+prod-secure = prod-secure01 prod-secure02 prod-secure03 prod-secure04
+old-prod-dj = prod-dj01 prod-dj02 prod-dj03 prod-dj04 prod-dj05 prod-dj06 prod-dj07 prod-dj08
+new-prod-dj = prod-dj10 prod-dj11 prod-dj12 prod-dj13 prod-dj14 prod-dj15 prod-dj16 prod-dj17
+new-sop-dj = sop-dj10 sop-dj11 sop-dj12 sop-dj13 sop-dj14 sop-dj15 sop-dj16 sop-dj17
+int-mongodb = int-mongodb-r1-s1 int-mongodb-r1-s2 int-mongodb-r2-s1 int-mongodb-r2-s2
+prod-mongodb = prod-mongodb-r1-s1 prod-mongodb-r1-s2 prod-mongodb-r2-s1 prod-mongodb-r2-s2 prod-mongodb-arb-s1 prod-mongodb-arb-s2
+prod-solr = prod-solr-tv prod-solr-tv-slave01 prod-solr-tv-slave02 prod-solr-search-slave01 prod-solr-search-slave02 prod-solr-search
+
+temp-new-dj = prod-dj13 prod-dj14 prod-dj15 prod-dj16 prod-dj17
+
+badcheese12 = badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com
+
+cdn-workers = cdn-worker1 cdn-worker2 cdn-worker3 cdn-worker4 cdn-worker5 cdn-worker6 cdn-worker7 cdn-worker8
