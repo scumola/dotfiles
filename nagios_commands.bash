@@ -31,6 +31,7 @@ function nagios_downtime {
         export thedate=`date +%s`
         export nextdate=`date -v+2H +%s`
         nagios_cmd SCHEDULE_HOST_DOWNTIME "$host\;$thedate\;$nextdate\;1\;0\;7200\;$whoami\;Taking host $host down for two hours for maintenance" $nagios_host
+        nagios_cmd SCHEDULE_HOST_SVC_DOWNTIME "$host\;$thedate\;$nextdate\;1\;0\;7200\;$whoami\;Taking host $host down for two hours for maintenance" $nagios_host
 }
 
 function nagios_downtime_prod {
@@ -53,6 +54,19 @@ function nagios_downtime_prod {
         nagios_downtime prod-secure02
         nagios_downtime prod-secure03
         nagios_downtime prod-secure04
+        nagios_downtime mapi-slave01
+        nagios_downtime mapi-slave02
+        nagios_downtime mapi-slave03
+        nagios_downtime mapi-slave04
+        nagios_downtime prod-dishonline-rds-slave-app1a
+        nagios_downtime prod-dishonline-rds-slave-app2a
+        nagios_downtime prod-dishonline-rds-slave-app1
+        nagios_downtime prod-dishonline-rds-slave-app2
+        nagios_downtime prod-dishonline-rds-slave-app3
+        nagios_downtime prod-dishonline-rds-slave-app4
+        nagios_downtime prod-mapi-haproxy
+        nagios_downtime prod-mapi-memcache01
+        nagios_downtime prod-cron
 }
 
 alias nag-disable="nagios_disable $1"
