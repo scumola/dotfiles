@@ -27,8 +27,8 @@ set noerrorbells
 
 set tabstop=4
 set shiftwidth=4
-set expandtab
-set smarttab
+" set expandtab
+" set smarttab
 " set laststatus=2
 set scrolloff=3
 
