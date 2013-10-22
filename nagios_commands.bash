@@ -34,6 +34,17 @@ function nagios_downtime {
         nagios_cmd SCHEDULE_HOST_SVC_DOWNTIME "$host\;$thedate\;$nextdate\;1\;0\;7200\;$whoami\;Taking host $host down for two hours for maintenance" $nagios_host
 }
 
+function nagios_acknowledge_quiet {
+        # takes a host out of nagios for 2 hours of downtime
+        export host=$1
+        export service=$2
+  		export nagios_host="nagios.dishonline.com"
+        export whoami=`whoami`
+        export thedate=`date +%s`
+        export nextdate=`date -v+2H +%s`
+        nagios_cmd ACKNOWLEDGE_SVC_PROBLEM "$host\;$service\;1\;0\;0\;$whoami\;ACK $host:$service is broken - working on it now" $nagios_host
+}
+
 function nagios_acknowledge {
         # takes a host out of nagios for 2 hours of downtime
         export host=$1
@@ -86,3 +97,4 @@ alias nag-downtime="nagios_downtime $1"
 alias nag-downtime-prod="nagios_downtime_prod"
 
 alias nag-ack="nagios_acknowledge $1 $2"
+alias nag-ack-quiet="nagios_acknowledge_quiet $1 $2"

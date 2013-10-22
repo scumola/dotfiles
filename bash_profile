@@ -113,11 +113,33 @@ if [ $? = 2 ]; then
    ssh-add ~/.ssh/monitordishonlinecom.pem
    ssh-add ~/.ssh/datalanche
    ssh-add ~/Downloads/production-root.pem
+   ssh-add ~/Downloads/mega.pem
+   ssh-add ~/keys/datalanche-deploy.pem
 fi
 
 source .nagios_commands.bash
+source .todo/todo_completion
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export PIPE_GTALK_USER=bigwebb@gmail.com
 export PIPE_GTALK_PASS=Fish..Head
+
+# android
+PATH="${PATH}:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/tools:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/platform-tools"
+
+# Setting PATH for JRuby 1.7.3
+# The orginal version is saved in .bash_profile.jrubysave
+PATH="${PATH}:/Library/Frameworks/JRuby.framework/Versions/Current/bin"
+export PATH
+
+# DSH aliases
+alias dsh-staging-thin-restart="dsh -g staging-radish -- 'sudo bash -c \"rvm use ree ; /etc/init.d/thin restart\"'"
+alias dsh-staging-uptime="dsh -g staging-radish uptime"
+alias dsh-prod-thin-restart-pt1="dsh -g prod-radish-pt1 -- 'sudo bash -c \"rvm use ree ; /etc/init.d/nginx stop ; sleep 30 ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"'"
+alias dsh-prod-thin-restart-pt2="dsh -g prod-radish-pt2 -- 'sudo bash -c \"rvm use ree ; /etc/init.d/nginx stop ; sleep 30 ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"'"
+alias dsh-prod-thin-restart="dsh-prod-thin-restart-pt1 ; dsh-prod-thin-restart-pt2"
+alias dsh-prod-thin-restart-all="dsh -g prod-radish -- 'sudo bash -c \"rvm use ree ; /etc/init.d/thin restart\"'"
+alias dsh-prod-radish-uptime="dsh -g prod-radish uptime"
+alias dsh-prod-bacin-uptime="dsh -g prod-bacin uptime"
+alias dsh-prod-memcache-restart-pt2="dsh -g prod-memcache -- 'sudo bash -c \"/etc/init.d/memcached restart\"'"

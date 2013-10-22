@@ -1,24 +1,17 @@
-clusters = sop-app prod-app old-prod-dj new-prod-dj new-sop-dj int-mongodb prod-mongodb temp-new-dj badcheese12 prod-secure prod-solr cdn-workers rabbit prod-bacin-app prod-bacin-secure prod-radish-app prod-radish-search
+clusters = prod-bacin-app prod-bacin-secure prod-radish-app prod-radish-search mv memcache staging-radish-app staging-radish-app-new beta-radish-app beta-bacin-app
 
-sop-app = sop-app1 sop-app2 sop-app3 sop-app4 sop-app5 sop-app6 sop-app7 sop-app8 sop-app9 sop-app10
-prod-app = prod-appserv07 prod-appserv08 prod-appserv09 prod-appserv10 prod-appserv11 prod-appserv12 prod-appserv13 prod-appserv14 prod-appserv15 prod-appserv16 prod-appserv17 prod-appserv18
-prod-secure = prod-secure01 prod-secure02 prod-secure03 prod-secure04
-old-prod-dj = prod-dj01 prod-dj02 prod-dj03 prod-dj04 prod-dj05 prod-dj06 prod-dj07 prod-dj08
-new-prod-dj = prod-dj10 prod-dj11 prod-dj12 prod-dj13 prod-dj14 prod-dj15 prod-dj16 prod-dj17
-new-sop-dj = sop-dj10 sop-dj11 sop-dj12 sop-dj13 sop-dj14 sop-dj15 sop-dj16 sop-dj17
-int-mongodb = int-mongodb-r1-s1 int-mongodb-r1-s2 int-mongodb-r2-s1 int-mongodb-r2-s2
-prod-mongodb = prod-mongodb-r1-s1 prod-mongodb-r1-s2 prod-mongodb-r2-s1 prod-mongodb-r2-s2 prod-mongodb-arb-s1 prod-mongodb-arb-s2
-prod-solr = prod-solr-tv prod-solr-tv-slave01 prod-solr-tv-slave02 prod-solr-search-slave01 prod-solr-search-slave02 prod-solr-search
-prod-bacin-app = prod-bacin-app01 prod-bacin-app02 prod-bacin-app03 prod-bacin-app04
-prod-bacin-secure = prod-bacin-secure01 prod-bacin-secure02 prod-bacin-secure03 prod-bacin-secure04
+prod-bacin-app = prod-bacin-app01 prod-bacin-app02 prod-bacin-app03 prod-bacin-app04 prod-bacin-app05 prod-bacin-app06 prod-bacin-app07 prod-bacin-app08 prod-bacin-app09 prod-bacin-app10 prod-bacin-app11 prod-bacin-app12 prod-bacin-app13 prod-bacin-app14 prod-bacin-app15 prod-bacin-app16
+prod-bacin-secure = prod-bacin-secure01 prod-bacin-secure02 prod-bacin-secure03 prod-bacin-secure04 prod-bacin-secure05 prod-bacin-secure06 prod-bacin-secure07 prod-bacin-secure08 prod-bacin-secure09 prod-bacin-secure10 prod-bacin-secure11 prod-bacin-secure12
 prod-radish-app = prod-radish01-app01 prod-radish01-app02 prod-radish01-app03 prod-radish01-app04 prod-radish01-app05 prod-radish01-app06 prod-radish01-app07 prod-radish01-app08 prod-radish01-app09 prod-radish01-app10 prod-radish01-app11 prod-radish01-app12 prod-radish01-app13 prod-radish01-app14 prod-radish01-app15 prod-radish01-app16 prod-radish01-app17 prod-radish01-app18 prod-radish01-app19 prod-radish01-app20 prod-radish01-app21 prod-radish01-app22 prod-radish01-app23 prod-radish01-app24 prod-radish01-app25 prod-radish01-app26 prod-radish01-app27 prod-radish01-app28 prod-radish01-app29 prod-radish01-app30 prod-radish01-app31 prod-radish01-app32
 
 prod-radish-search = prod-radish01-search01 prod-radish01-search02 prod-radish01-search03 prod-radish01-search04 prod-radish01-search05 prod-radish01-search06 prod-radish01-search07 prod-radish01-search08 prod-radish01-search09 prod-radish01-search10 prod-radish01-search11 prod-radish01-search12 prod-radish01-search13 prod-radish01-search14 prod-radish01-search15 prod-radish01-search16 prod-radish01-search17 prod-radish01-search18 prod-radish01-search19
 
-temp-new-dj = prod-dj13 prod-dj14 prod-dj15 prod-dj16 prod-dj17
+mv = prod-mv-web01 prod-mv-web02 prod-mv-web03 prod-mv-cron qa-mv-web01 qa-mv-web02 qa-mv-cron
 
-badcheese12 = badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com badcheese.com
+memcache = prod-radish01-memcache02 prod-radish01-memcache03 qa-radish01-memcache int-radish01-memcache int-radish01-memcache02
 
-cdn-workers = cdn-worker1 cdn-worker2 cdn-worker3 cdn-worker4 cdn-worker5 cdn-worker6 cdn-worker7 cdn-worker8
+staging-radish-app = staging-radish01-app01 staging-radish01-app02 staging-radish01-app03 staging-radish01-app04 staging-radish01-app05 staging-radish01-app06 staging-radish01-app07 staging-radish01-app08 staging-radish01-app09 staging-radish01-app10 staging-radish01-app11 staging-radish01-app12 staging-radish01-app13 staging-radish01-app14 staging-radish01-app15 staging-radish01-app16 staging-radish01-app17 staging-radish01-app18 staging-radish01-app19 staging-radish01-app20 staging-radish01-app21 staging-radish01-app22 staging-radish01-app23 staging-radish01-app24 staging-radish01-app25 staging-radish01-app26 staging-radish01-app27 staging-radish01-app28 staging-radish01-app29 staging-radish01-app30 staging-radish01-app31 staging-radish01-app32 staging-radish01-app33 staging-radish01-app34 staging-radish01-app35 staging-radish01-app36 staging-radish01-app37 staging-radish01-app38 staging-radish01-app39 staging-radish01-app40 staging-radish01-app41 staging-radish01-app42 staging-radish01-app43 staging-radish01-app44 staging-radish01-app45 staging-radish01-app46 staging-radish01-app47 staging-radish01-app48 staging-radish01-app49 staging-radish01-app50
+staging-radish-app-new = staging-radish01-app33 staging-radish01-app34 staging-radish01-app35 staging-radish01-app36 staging-radish01-app37 staging-radish01-app38 staging-radish01-app39 staging-radish01-app40 staging-radish01-app41 staging-radish01-app42 staging-radish01-app43 staging-radish01-app44 staging-radish01-app45 staging-radish01-app46 staging-radish01-app47 staging-radish01-app48 staging-radish01-app49 staging-radish01-app50
 
-rabbit = rabbit01 rabbit02 rabbit03 rabbit04 rabbit05 rabbit06 rabbit07 rabbit08 rabbit09 rabbit10 rabbit11 rabbit12
+beta-radish-app = beta-radish01-app01 beta-radish01-app02 beta-radish01-app03 beta-radish01-app04 beta-radish01-app05 beta-radish01-app06
+beta-bacin-app = beta-bacin-app01 beta-bacin-app02
