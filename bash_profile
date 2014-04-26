@@ -95,6 +95,8 @@ alias less="less -R $*"
 
 alias movies="cd /Users/stevenwebb/work_personal/google-movie-showtimes-parser ; ./movies.php | less -R"
 
+alias check_open_dns_resolver="dig +short amiopen.openresolvers.org TXT"
+
 export SSH_AUTH_SOCK=~/.ssh-socket
 
 ssh-add -l >/dev/null 2>&1
@@ -122,6 +124,8 @@ source .todo/todo_completion
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+rvm use 1.8.7
+
 export PIPE_GTALK_USER=bigwebb@gmail.com
 export PIPE_GTALK_PASS=Fish..Head
 
@@ -133,13 +137,28 @@ PATH="${PATH}:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/tools:/Users/s
 PATH="${PATH}:/Library/Frameworks/JRuby.framework/Versions/Current/bin"
 export PATH
 
+function campfire() {
+	# thunderdome room
+	curl -s -u a754fb1d851390d3880593489988c813775fca56:koala111 -H 'Content-Type: application/json' -d '{"message":{"body":"['"`date`"'] (webb-bot) '"$@"'"}}' https://echostar1.campfirenow.com/room/525908/speak.json
+	# radical-bacin room
+	curl -s -u a754fb1d851390d3880593489988c813775fca56:koala111 -H 'Content-Type: application/json' -d '{"message":{"body":"['"`date`"'] (webb-bot) '"$@"'"}}' https://echostar1.campfirenow.com/room/522041/speak.json
+}
+
 # DSH aliases
-alias dsh-staging-thin-restart="dsh -g staging-radish -- 'sudo bash -c \"rvm use ree ; /etc/init.d/thin restart\"'"
-alias dsh-staging-uptime="dsh -g staging-radish uptime"
-alias dsh-prod-thin-restart-pt1="dsh -g prod-radish-pt1 -- 'sudo bash -c \"rvm use ree ; /etc/init.d/nginx stop ; sleep 30 ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"'"
-alias dsh-prod-thin-restart-pt2="dsh -g prod-radish-pt2 -- 'sudo bash -c \"rvm use ree ; /etc/init.d/nginx stop ; sleep 30 ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"'"
+alias dsh-staging-thin-restart="dsh -F 16 -g staging-radish -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/thin restart\"'"
+alias dsh-staging-uptime="dsh -F 16 -g staging-radish uptime"
+alias dsh-prod-thin-restart-pt1="campfire '01,02,05-34 (rolling) restart started' ; dsh -F 16 -g prod-radish-pt1 -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/nginx stop ; sleep 30 ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"'"
+alias dsh-prod-thin-restart-pt2="campfire '03,04,35-64 (rolling) restart started' ; dsh -F 16 -g prod-radish-pt2 -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/nginx stop ; sleep 30 ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"' ; campfire 'thin restarts done'"
 alias dsh-prod-thin-restart="dsh-prod-thin-restart-pt1 ; dsh-prod-thin-restart-pt2"
-alias dsh-prod-thin-restart-all="dsh -g prod-radish -- 'sudo bash -c \"rvm use ree ; /etc/init.d/thin restart\"'"
-alias dsh-prod-radish-uptime="dsh -g prod-radish uptime"
-alias dsh-prod-bacin-uptime="dsh -g prod-bacin uptime"
-alias dsh-prod-memcache-restart-pt2="dsh -g prod-memcache -- 'sudo bash -c \"/etc/init.d/memcached restart\"'"
+alias dsh-prod-thin-restart-all="campfire '(rolling - 16 at a time) restarting thin across all radish app servers' ; dsh -F 16 -g prod-radish -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/thin restart\"' ; campfire 'thin restarts done'"
+alias dsh-prod-nginx-restart-odd="campfire '(non-rolling) restarting nginx across all radish odd app servers' ; dsh -F 16 -g prod-radish -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/nginx restart\"' ; campfire 'nginx odd restarts done'"
+alias dsh-prod-nginx-restart-even="campfire '(non-rolling) restarting nginx across all radish even app servers' ; dsh -F 16 -g prod-radish -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/nginx restart\"' ; campfire 'nginx even restarts done'"
+alias dsh-prod-radish-uptime="dsh -F 16 -g prod-radish uptime"
+alias dsh-prod-bacin-uptime="dsh -F 16 -g prod-bacin uptime"
+alias dsh-prod-bacin-nginx-stop="campfire 'stopping nginx on prod-bacin-app servers' ; dsh -F 16 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx stop\"' ; campfire 'done'"
+alias dsh-prod-bacin-nginx-start="dsh -F 16 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx start\"'"
+alias dsh-prod-bacin-nginx-restart="dsh -F 16 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx restart\"'"
+alias dsh-prod-memcache-restart="campfire 'prod-radish-memcache restarting (clearing)' ; dsh -F 16 -g prod-memcache -- 'sudo bash -c \"/etc/init.d/memcached restart\"' ; campfire 'done'"
+
+# added by Anaconda 1.8.0 installer
+export PATH="/Users/stevenwebb/anaconda/bin:$PATH"
