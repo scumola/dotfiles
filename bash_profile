@@ -126,9 +126,6 @@ source .todo/todo_completion
 
 rvm use 1.8.7
 
-export PIPE_GTALK_USER=bigwebb@gmail.com
-export PIPE_GTALK_PASS=Fish..Head
-
 # android
 PATH="${PATH}:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/tools:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/platform-tools"
 
@@ -138,10 +135,8 @@ PATH="${PATH}:/Library/Frameworks/JRuby.framework/Versions/Current/bin"
 export PATH
 
 function campfire() {
-	# thunderdome room
-	curl -s -u a754fb1d851390d3880593489988c813775fca56:koala111 -H 'Content-Type: application/json' -d '{"message":{"body":"['"`date`"'] (webb-bot) '"$@"'"}}' https://echostar1.campfirenow.com/room/525908/speak.json
 	# radical-bacin room
-	curl -s -u a754fb1d851390d3880593489988c813775fca56:koala111 -H 'Content-Type: application/json' -d '{"message":{"body":"['"`date`"'] (webb-bot) '"$@"'"}}' https://echostar1.campfirenow.com/room/522041/speak.json
+	curl -s -u a754fb1d851390d3880593489988c813775fca56:493ndk8gJQszkU5UUH48 -H 'Content-Type: application/json' -d '{"message":{"body":"['"`date`"'] (webb-bot) '"$@"'"}}' https://echostar1.campfirenow.com/room/522041/speak.json
 }
 
 # DSH aliases
