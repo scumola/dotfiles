@@ -7,7 +7,8 @@ call pathogen#runtime_append_all_bundles()
 
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 	syntax on
-	colorscheme torte
+"	colorscheme torte
+	colorscheme desert
 	set hlsearch
     set incsearch
 	set guifont=Monaco:h10
@@ -24,6 +25,8 @@ endif
 
 set ignorecase
 set noerrorbells
+
+set foldmethod=indent
 
 set tabstop=4
 set shiftwidth=4
