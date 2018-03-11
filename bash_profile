@@ -7,7 +7,7 @@ if [ "${BASH-no}" != "no" ]; then
 	[ -r /etc/bashrc ] && . /etc/bashrc
 fi
 
-export PATH=${PATH}:/Users/stevenwebb/bin
+export PATH=/usr/local/git/bin:${PATH}:/Users/stevenwebb/bin
 
 for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
 	[ -r "$file" ] && source "$file"
@@ -19,8 +19,8 @@ shopt -s nocaseglob
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
-export HISTFILESIZE=10000
-export HISTSIZE=10000
+export HISTFILESIZE=100000
+export HISTSIZE=100000
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
@@ -47,6 +47,7 @@ else
 fi
 
 # IP addresses
+alias ip2="curl ifconfig.me"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
@@ -67,7 +68,7 @@ alias fs="stat -f \"%z bytes\""
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 
 # Empty the Trash on all mounted volumes and the main HDD
-# Also, clear Apple’s System Logs to improve shell startup speed
+# Also, clear Appleâs System Logs to improve shell startup speed
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
 # Show/hide hidden files in Finder
@@ -85,6 +86,9 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 alias spotoff="sudo mdutil -a -i off"
 # Enable Spotlight
 alias spoton="sudo mdutil -a -i on"
+
+alias secpass="openssl rand -base64 24"
+alias hexpass="openssl rand -hex 24"
 
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
@@ -108,15 +112,16 @@ if [ $? = 2 ]; then
    echo $SSH_AGENT_PID > ~/.ssh-agent-pid
    rm /tmp/.ssh-script
    ssh-add
+   ssh-add ~/.ssh/deploycopy
+   ssh-add ~/keys/DANY-default-2016.pem
+#   ssh-add ~/keys/ghopperOnline.pem
+   ssh-add ~/.ssh/monitordishonlinecom.pem
    ssh-add ~/keys/*.priv
    ssh-add ~/.ssh/dol-pk.pem
-   ssh-add ~/.ssh/deploycopy
    ssh-add ~/.ssh/dishgit.pem
-   ssh-add ~/.ssh/monitordishonlinecom.pem
-   ssh-add ~/.ssh/datalanche
    ssh-add ~/Downloads/production-root.pem
-   ssh-add ~/Downloads/mega.pem
-   ssh-add ~/keys/datalanche-deploy.pem
+#   ssh-add ~/.ssh/datalanche
+#   ssh-add ~/keys/datalanche-deploy.pem
 fi
 
 source .nagios_commands.bash
@@ -124,7 +129,7 @@ source .todo/todo_completion
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-rvm use 1.8.7
+rvm use 1.8.7-p358
 
 # android
 PATH="${PATH}:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/tools:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/platform-tools"
@@ -140,23 +145,30 @@ function campfire() {
 }
 
 # DSH aliases
-alias dsh-staging-thin-restart="dsh -F 10 -g staging-radish -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/thin restart\"'"
+alias dsh-staging-thin-restart="dsh -F 10 -g staging-radish -- 'sudo bash -c \"rvm use 2.1.5\@radish_0_1 ; /etc/init.d/thin restart\"'"
 alias dsh-staging-uptime="dsh -F 10 -g staging-radish uptime"
-alias dsh-prod-thin-restart="\ 
-	campfire 'thin restarts (rolling; in chunks of ten at a time) - STARTED' ; \
-	dsh -F 10 -g prod-radish -- 'sudo bash -c \"rvm use 1.9.3-p448 ; rvm gemset use radish_0_1 ; /etc/init.d/nginx stop ; sleep 60 ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"' ; \
-	campfire 'thin restarts (rolling; in chunks of ten at a time) - DONE' ; \
-	"
+alias dsh-prod-thin-restart="campfire 'radish and recents thin restarts (rolling; in chunks of ten at a time) - STARTED' ; dsh -F 10 -g prod-radish -- 'sudo bash -c \"rvm use 2.1.5\@radish_0_1 ; /etc/init.d/nginx stop ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"' ; campfire 'radish and recents thin restarts (rolling; in chunks of ten at a time) - DONE' "
+alias dsh-prod-thin-restart-odd="campfire 'radish and recents thin restarts (rolling, in chunks of ten at a time, odds only) - STARTED' ; dsh -F 10 -g prod-radish-odd -- 'sudo bash -c \"/usr/local/rvm/bin/rvm use 2.1.5\@radish_0_1 ; /etc/init.d/nginx stop ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"' ; campfire 'radish and recents thin restarts (rolling, in chunks of ten at a time, odds only) - DONE' "
 alias dsh-prod-radish-uptime="dsh -F 10 -g prod-radish 'uptime'"
 alias dsh-prod-bacin-uptime="dsh -F 10 -g prod-bacin uptime"
 alias dsh-prod-bacin-nginx-stop="campfire 'STOPPING nginx on prod-bacin-app servers' ; dsh -F 10 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx stop\"' ; campfire 'DONE'"
 alias dsh-prod-bacin-nginx-start="dsh -F 10 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx start\"'"
 alias dsh-prod-bacin-nginx-restart="dsh -F 10 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx restart\"'"
 #alias dsh-prod-memcache-restart="campfire 'prod-radish-memcache RESTARTING (clearing)' ; dsh -F 10 -g prod-memcache -- 'sudo bash -c \"/etc/init.d/memcached restart\"' ; campfire 'DONE'"
-alias dsh-prod-memcache-uptime="dsh -F 10 -g prod-radish-memcache 'uptime'"
+#alias dsh-prod-memcache-uptime="dsh -F 10 -g prod-radish-memcache 'uptime'"
+alias csshX-prod-radish-haproxy="csshX deploy@prod-radish01-app-haproxy.dishanywhere.com deploy@prod-radish01-app-haproxy[2-6].dishanywhere.com"
+alias csshX-prod-bacin-haproxy="csshX deploy@prod-bacin-app-haproxy[2-3].dishanywhere.com"
+alias csshX-prod-bacin-secure-haproxy="csshX deploy@prod-bacin-secure-haproxy[2-4].dishanywhere.com"
+alias csshX-prod-bacin-haproxy="csshX deploy@prod-bacin-app-haproxy.dishanywhere.com deploy@prod-bacin-app-haproxy[2-3].dishanywhere.com"
+alias csshX-beta-radish-haproxy="csshX deploy@beta-radish01-haproxy.dishonline.com deploy@beta-radish01-haproxy[20-39].dishonline.com"
+alias mosh-grasshopper="mosh ec2-user@pgh-ops01.dishanywhere.com"
 
 # added by Anaconda 1.8.0 installer
-export PATH="/Users/stevenwebb/anaconda/bin:$PATH"
+#export PATH="/Users/stevenwebb/anaconda/bin:$PATH"
 
-# needed by the vmware tools perl stuff
 export PERL_LWP_SSL_VERIFY_HOSTNAME=0
+
+transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
+	tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+
+task

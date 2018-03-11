@@ -6,7 +6,7 @@ function nagios_cmd {
         export nagios_host=$3
         export line="[`date +%s`] $cmd\;$host"
         echo $line
-        ssh ec2-user@$nagios_host "echo $line > /var/log/nagios/rw/nagios.cmd"
+        ssh $nagios_host "echo $line > /var/log/nagios/rw/nagios.cmd"
 }
 
 function nagios_disable {

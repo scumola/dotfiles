@@ -2,17 +2,16 @@ set nocompatible
 set wildmenu
 set ttyfast
 
-call pathogen#infect()
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
 
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
 	syntax on
 "	colorscheme torte
-	colorscheme desert
-	set hlsearch
-    set incsearch
-	set guifont=Monaco:h10
-    set guioptions-=T   " hide toolbar
+"	colorscheme desert
+"	set hlsearch
+"    set incsearch
+"	set guifont=Monaco:h10
+"    set guioptions-=T   " hide toolbar
     " set guifont=Bitstream\ Vera\ Sans\ Mono:h12
 endif
 
@@ -26,7 +25,7 @@ endif
 set ignorecase
 set noerrorbells
 
-set foldmethod=indent
+" set foldmethod=indent
 
 set tabstop=4
 set shiftwidth=4
@@ -83,3 +82,4 @@ let g:dbext_default_profile_dany_qa = 'type=MYSQL:host=qa-radish01-master.cuuvfx
 " let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql:extra=--batch --raw --silent'
 " let g:dbext_default_profile_mysql_local_DBI = 'type=DBI:user=swebb:passwd=koala1:driver=mysql:conn_parms=database=tweets;host=10.0.0.14'
 " let g:dbext_default_profile_mysql_local_ODBC = 'type=ODBC:user=root:passwd=whatever:dsnname=mysql'
+let NERDTreeShowHidden=1
