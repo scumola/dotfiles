@@ -162,6 +162,10 @@ alias csshX-prod-bacin-secure-haproxy="csshX deploy@prod-bacin-secure-haproxy[2-
 alias csshX-prod-bacin-haproxy="csshX deploy@prod-bacin-app-haproxy.dishanywhere.com deploy@prod-bacin-app-haproxy[2-3].dishanywhere.com"
 alias csshX-beta-radish-haproxy="csshX deploy@beta-radish01-haproxy.dishonline.com deploy@beta-radish01-haproxy[20-39].dishonline.com"
 alias mosh-grasshopper="mosh ec2-user@pgh-ops01.dishanywhere.com"
+alias maillog="sudo log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info"
+alias mailfetch="fetchmail -d 30 -N"
+alias weather="curl wttr.in"
+alias bc="et steve@badcheese.com -c 'tmux -CC a || tmux -CC'"
 
 # added by Anaconda 1.8.0 installer
 #export PATH="/Users/stevenwebb/anaconda/bin:$PATH"
@@ -171,4 +175,4 @@ export PERL_LWP_SSL_VERIFY_HOSTNAME=0
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 	tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
 
-task
+#task
