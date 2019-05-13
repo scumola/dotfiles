@@ -74,12 +74,12 @@ set magic
 set autoread
 
 let g:dbext_default_profile = 'mysql_local'
-let g:dbext_default_profile_mysql_local = 'type=MYSQL:host=10.0.0.14:user=swebb:passwd=koala1:dbname=tweets'
-let g:dbext_default_profile_dany_prod = 'type=MYSQL:host=prod-radish01-slave02.cuuvfxxjlwmd.us-east-1.rds.amazonaws.com:user=dishonline:passwd=f00b00maf00z:dbname=dishonline'
-let g:dbext_default_profile_dany_prod_users = 'type=MYSQL:host=prod-radish01-users-master.cuuvfxxjlwmd.us-east-1.rds.amazonaws.com:user=dishonline:passwd=f00b00maf00z:dbname=dishonline'
-let g:dbext_default_profile_dany_qa = 'type=MYSQL:host=qa-radish01-master.cuuvfxxjlwmd.us-east-1.rds.amazonaws.com:user=dishonline:passwd=f00b00maf00z:dbname=dishonline'
-" let g:dbext_default_profile_mysql_local = 'type=MYSQL:host=10.0.0.14:user=swebb:passwd=koala1:dbname=tweets:extra=-t'
-" let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=whatever:dbname=mysql:extra=--batch --raw --silent'
-" let g:dbext_default_profile_mysql_local_DBI = 'type=DBI:user=swebb:passwd=koala1:driver=mysql:conn_parms=database=tweets;host=10.0.0.14'
-" let g:dbext_default_profile_mysql_local_ODBC = 'type=ODBC:user=root:passwd=whatever:dsnname=mysql'
+let g:dbext_default_profile_mysql_local = 'type=MYSQL:host=10.0.0.14:user=swebb:passwd=pw:dbname=tweets'
+let g:dbext_default_profile_dany_prod = 'type=MYSQL:host=prod-radish01-slave02.cuuvfxxjlwmd.us-east-1.rds.amazonaws.com:user=dishonline:passwd=pw:dbname=dishonline'
+let g:dbext_default_profile_dany_prod_users = 'type=MYSQL:host=prod-radish01-users-master.cuuvfxxjlwmd.us-east-1.rds.amazonaws.com:user=dishonline:passwd=pw:dbname=dishonline'
+let g:dbext_default_profile_dany_qa = 'type=MYSQL:host=qa-radish01-master.cuuvfxxjlwmd.us-east-1.rds.amazonaws.com:user=dishonline:passwd=pw:dbname=dishonline'
+" let g:dbext_default_profile_mysql_local = 'type=MYSQL:host=10.0.0.14:user=swebb:passwd=pw:dbname=tweets:extra=-t'
+" let g:dbext_default_profile_mysql_local = 'type=MYSQL:user=root:passwd=pw:dbname=mysql:extra=--batch --raw --silent'
+" let g:dbext_default_profile_mysql_local_DBI = 'type=DBI:user=swebb:passwd=pw:driver=mysql:conn_parms=database=tweets;host=10.0.0.14'
+" let g:dbext_default_profile_mysql_local_ODBC = 'type=ODBC:user=root:passwd=pw:dsnname=mysql'
 let NERDTreeShowHidden=1
