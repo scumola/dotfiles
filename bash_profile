@@ -36,9 +36,6 @@ export LANG="en_US"
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
 
-alias irc="xaric swebb irc.dishonline.com"
-alias twit="xaric scumola irc.twit.tv"
-
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 	alias ls="command ls -G"
 else
@@ -68,7 +65,7 @@ alias fs="stat -f \"%z bytes\""
 alias rot13='tr a-zA-Z n-za-mN-ZA-M'
 
 # Empty the Trash on all mounted volumes and the main HDD
-# Also, clear Appleâs System Logs to improve shell startup speed
+# Also, clear Apple's System Logs to improve shell startup speed
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
 # Show/hide hidden files in Finder
@@ -96,8 +93,6 @@ alias pumpitup="osascript -e 'set volume 10'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 alias less="less -R $*"
-
-alias movies="cd /Users/stevenwebb/work_personal/google-movie-showtimes-parser ; ./movies.php | less -R"
 
 alias check_open_dns_resolver="dig +short amiopen.openresolvers.org TXT"
 
@@ -139,33 +134,10 @@ PATH="${PATH}:/Users/stevenwebb/android/adt-bundle-mac-x86_64/sdk/tools:/Users/s
 PATH="${PATH}:/Library/Frameworks/JRuby.framework/Versions/Current/bin"
 export PATH
 
-function campfire() {
-	# radical-bacin room
-	curl -s -u a754fb1d851390d3880593489988c813775fca56:493ndk8gJQszkU5UUH48 -H 'Content-Type: application/json' -d '{"message":{"body":"['"`date \"+%Y-%m-%d %H:%M:%S\"`"'] (webb-bot) '"$@"'"}}' https://echostar1.campfirenow.com/room/522041/speak.json | /usr/local/bin/json_xs | grep body
-}
-
-# DSH aliases
-alias dsh-staging-thin-restart="dsh -F 10 -g staging-radish -- 'sudo bash -c \"rvm use 2.1.5\@radish_0_1 ; /etc/init.d/thin restart\"'"
-alias dsh-staging-uptime="dsh -F 10 -g staging-radish uptime"
-alias dsh-prod-thin-restart="campfire 'radish and recents thin restarts (rolling; in chunks of ten at a time) - STARTED' ; dsh -F 10 -g prod-radish -- 'sudo bash -c \"rvm use 2.1.5\@radish_0_1 ; /etc/init.d/nginx stop ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"' ; campfire 'radish and recents thin restarts (rolling; in chunks of ten at a time) - DONE' "
-alias dsh-prod-thin-restart-odd="campfire 'radish and recents thin restarts (rolling, in chunks of ten at a time, odds only) - STARTED' ; dsh -F 10 -g prod-radish-odd -- 'sudo bash -c \"/usr/local/rvm/bin/rvm use 2.1.5\@radish_0_1 ; /etc/init.d/nginx stop ; /etc/init.d/thin restart ; /etc/init.d/nginx start\"' ; campfire 'radish and recents thin restarts (rolling, in chunks of ten at a time, odds only) - DONE' "
-alias dsh-prod-radish-uptime="dsh -F 10 -g prod-radish 'uptime'"
-alias dsh-prod-bacin-uptime="dsh -F 10 -g prod-bacin uptime"
-alias dsh-prod-bacin-nginx-stop="campfire 'STOPPING nginx on prod-bacin-app servers' ; dsh -F 10 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx stop\"' ; campfire 'DONE'"
-alias dsh-prod-bacin-nginx-start="dsh -F 10 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx start\"'"
-alias dsh-prod-bacin-nginx-restart="dsh -F 10 -g prod-bacin -- 'sudo bash -c \"/etc/init.d/nginx restart\"'"
-#alias dsh-prod-memcache-restart="campfire 'prod-radish-memcache RESTARTING (clearing)' ; dsh -F 10 -g prod-memcache -- 'sudo bash -c \"/etc/init.d/memcached restart\"' ; campfire 'DONE'"
-#alias dsh-prod-memcache-uptime="dsh -F 10 -g prod-radish-memcache 'uptime'"
-alias csshX-prod-radish-haproxy="csshX deploy@prod-radish01-app-haproxy.dishanywhere.com deploy@prod-radish01-app-haproxy[2-6].dishanywhere.com"
-alias csshX-prod-bacin-haproxy="csshX deploy@prod-bacin-app-haproxy[2-3].dishanywhere.com"
-alias csshX-prod-bacin-secure-haproxy="csshX deploy@prod-bacin-secure-haproxy[2-4].dishanywhere.com"
-alias csshX-prod-bacin-haproxy="csshX deploy@prod-bacin-app-haproxy.dishanywhere.com deploy@prod-bacin-app-haproxy[2-3].dishanywhere.com"
-alias csshX-beta-radish-haproxy="csshX deploy@beta-radish01-haproxy.dishonline.com deploy@beta-radish01-haproxy[20-39].dishonline.com"
 alias mosh-grasshopper="mosh ec2-user@pgh-ops01.dishanywhere.com"
 alias maillog="sudo log stream --predicate  '(process == "smtpd") || (process == "smtp")' --info"
 alias mailfetch="fetchmail -d 30 -N"
 alias weather="curl wttr.in"
-alias bc="et steve@badcheese.com -c 'tmux -CC a || tmux -CC'"
 
 # added by Anaconda 1.8.0 installer
 #export PATH="/Users/stevenwebb/anaconda/bin:$PATH"

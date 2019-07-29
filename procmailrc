@@ -1,0 +1,17 @@
+#DEFAULT=$HOME/mail/inbox
+#MAILDIR=$HOME/mail
+PMDIR=$HOME/.procmail
+LOGFILE=$PMDIR/log
+VERBOSE=on
+
+:0 fhw
+| formail -I "From " -a "From "
+
+:0:
+* ^From.*no-reply@shodan.io
+/Users/stevenwebb/mail/shodan
+
+
+:0
+/Users/stevenwebb/mail/inbox
+
